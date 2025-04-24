@@ -1,0 +1,6 @@
+gymnasium
+mujoco
+mujoco-py
+stable-baselines3
+numpy
+matplotlib

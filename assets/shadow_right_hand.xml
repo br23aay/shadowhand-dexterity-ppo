@@ -1,0 +1,75 @@
+<mujoco model="shadow_right_hand">
+  <include file="right_hand_test.xml"/>
+  <statistic extent="0.3" center="0.3 0 0"/>
+  <visual>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <quality shadowsize="8192"/>
+    <global azimuth="220" elevation="-30"/>
+  </visual>
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3" 
+             markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+  </asset>
+  <worldbody>
+    <light pos="0 0 1"/>
+    <light pos="0.3 0 1.5" dir="0 0 -1" directional="true"/>
+    <geom name="floor" pos="0 0 -0.1" size="0 0 0.05" type="plane" material="groundplane"/>
+    <body name="shadow_hand">
+      <site name="thumb_tip"  pos="0.02 0.01 0.0" size="0.005" type="ellipsoid" rgba="0 1 0 1"/>
+      <site name="index_tip"  pos="0.04 0.02 0.0" size="0.005" type="ellipsoid" rgba="1 0 0 1"/>
+      <site name="middle_tip" pos="0.06 0.02 0.0" size="0.005" type="ellipsoid" rgba="0 0 1 1"/>
+      <site name="ring_tip"   pos="0.08 0.02 0.0" size="0.005" type="ellipsoid" rgba="1 1 0 1"/>
+      <site name="little_tip" pos="0.10 0.02 0.0" size="0.005" type="ellipsoid" rgba="1 0 1 1"/>
+    </body>
+    <body name="pen" pos="0.35 0 0.027" quat="0 0 0.5 0.5">
+      <joint name="pen_joint" type="free"/>
+      <!-- Changed pen_body name to avoid conflict -->
+      <geom name="pen_body_1" type="cylinder" size="0.006 0.07" rgba="0.8 0.8 0.8 1" condim="6" friction="0.2 0.01 0.003" density="1000"/>
+      <site name="pen_start" pos="0 0 0.07" size="0.003" type="sphere" rgba="0 1 1 1"/>
+      <site name="pen_middle" pos="0 0 0" size="0.003" type="sphere" rgba="0 1 1 1"/>
+      <site name="pen_end" pos="0 0 -0.07" size="0.003" type="sphere" rgba="0 1 1 1"/>
+    </body>
+  </worldbody>
+  <actuator>
+    <position name="rh_A_THJ5_c" joint="rh_THJ5" class="thbase" ctrlrange="-1.5 1.5"/>
+    <position name="rh_A_THJ4_c" joint="rh_THJ4" class="thproximal" ctrlrange="-0.5 2.0"/>
+    <position name="rh_A_THJ3_c" joint="rh_THJ3" class="thhub" ctrlrange="-0.5 0.5"/>
+    <position name="rh_A_THJ2_c" joint="rh_THJ2" class="thmiddle" ctrlrange="-2.0 2.0"/>
+    <position name="rh_A_THJ1_c" joint="rh_THJ1" class="thdistal" ctrlrange="-0.5 2.0"/>
+    <position name="rh_A_FFJ5_c" joint="rh_FFJ1" class="proximal" ctrlrange="-0.5 2.0"/>
+    <position name="rh_A_FFJ4_c" joint="rh_FFJ4" class="knuckle" ctrlrange="0 0"/>
+    <position name="rh_A_FFJ3_c" joint="rh_FFJ3" class="proximal" ctrlrange="-0.5 4.0"/>
+    <position name="rh_A_FFJ2_c" joint="rh_FFJ2" class="proximal" ctrlrange="-0.5 4.0"/>
+    <position name="rh_A_FFJ1_c" joint="rh_FFJ1" class="proximal" ctrlrange="-0.5 5.0"/>
+    <position name="rh_A_MFJ4_c" joint="rh_MFJ4" class="knuckle" ctrlrange="-0.5 5"/>
+    <position name="rh_A_MFJ3_c" joint="rh_MFJ3" class="proximal" ctrlrange="-0.5 5"/>
+    <position name="rh_A_MFJ2_c" joint="rh_MFJ2" class="proximal" ctrlrange="-0.5 5"/>
+    <position name="rh_A_MFJ1_c" joint="rh_FFJ1" class="proximal" ctrlrange="-0.5 5"/>
+    <position name="rh_A_MFJ0_c" tendon="rh_MFJ0" class="middle_distal" ctrlrange="-0.5 5"/>
+    <position name="rh_A_RFJ4_c" joint="rh_RFJ4" class="knuckle" ctrlrange="-0.5 5"/>
+    <position name="rh_A_RFJ3_c" joint="rh_RFJ3" class="proximal" ctrlrange="-0.5 5"/>
+    <position name="rh_A_RFJ2_c" joint="rh_RFJ2" class="proximal" ctrlrange="-0.5 5"/>
+    <position name="rh_A_RFJ1_c" joint="rh_RFJ1" class="proximal" ctrlrange="-0.5 5"/>
+    <position name="rh_A_RFJ0_c" tendon="rh_RFJ0" class="middle_distal" ctrlrange="-0.5 5"/>
+    <position name="rh_A_LFJ5_c" joint="rh_LFJ5" class="metacarpal" ctrlrange="0 5"/>
+    <position name="rh_A_LFJ4_c" joint="rh_LFJ4" class="knuckle" ctrlrange="-0.5 5"/>
+    <position name="rh_A_LFJ3_c" joint="rh_LFJ3" class="proximal" ctrlrange="-0.5 5"/>
+    <position name="rh_A_LFJ2_c" joint="rh_LFJ2" class="proximal" ctrlrange="-0.5 5"/>
+    <position name="rh_A_LFJ1_c" joint="rh_LFJ1" class="proximal" ctrlrange="-0.5 5"/>
+    <position name="rh_A_LFJ0_c" tendon="rh_LFJ0" class="middle_distal" ctrlrange="-0.5 5"/>
+  </actuator>
+  <sensor>
+    <touch name="touch_thumb" site="thumb_tip"/>
+    <touch name="touch_index" site="index_tip"/>
+    <touch name="touch_middle" site="middle_tip"/>
+    <touch name="touch_ring" site="ring_tip"/>
+    <touch name="touch_little" site="little_tip"/>
+    <touch name="touch_pen_start" site="pen_start"/>
+    <touch name="touch_pen_middle" site="pen_middle"/>
+    <touch name="touch_pen_end" site="pen_end"/>
+    <framepos name="pen_pos" objtype="site" objname="pen_middle"/>
+    <framequat name="pen_orient" objtype="site" objname="pen_middle"/>
+  </sensor>
+</mujoco>

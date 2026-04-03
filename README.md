@@ -177,7 +177,7 @@ This project was submitted and accepted as a Final Project Report for the **MSc 
 **Title:** *Reinforcement Learning for Robot Dexterous In-Hand Manipulation of Objects (Shadow Hand)*  
 **Author:** Bharadwaj Rachuri  
 **Supervisor:** Dr. Diego Resende Faria  
-**Module:** 7COM1039-0206-2024 — Advanced Computer Science Masters Project
+**Module:** 7COM1039-0206-2024 — Advanced Computer Science Masters Project    
 **Journal:** IJRES — Vol. 13, Issue 6, pp. 164–183 | ISSN: 2320-9364 | Impact Factor: 7.52 | [www.ijres.org](https://www.ijres.org)
 ---
 
